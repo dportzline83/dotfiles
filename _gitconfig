@@ -1,0 +1,49 @@
+[user]
+	name = Darrel Portzline
+	email = darrel.portzline@extendhealth.com
+[color]
+ui = auto 
+[color "branch"]
+  current = green 
+  local = yellow
+  remote = magenta
+[color "diff"]
+  meta = yellow
+  frag = magenta
+  old = red
+  new = green
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan  
+[alias]
+  co = checkout
+  ci = commit
+  st = status -sb
+  rbm='rebase master'
+  lga = log --pretty=format:'%an %Cred%d%Creset(%Cred%h%Creset) - %s %C(yellow)%ar' --graph -n 35
+  unmerged = diff --name-status --diff-filter=U
+  aa = add -A
+  del = "!git clean -f; git reset HEAD --hard"
+[gui]
+	recentrepo = C:/Code/one-exchange
+[diff]
+  tool = p4merge
+  guitool = p4merge
+  renames = copies
+[difftool]
+  prompt = false
+[difftool "p4merge"]
+  cmd = p4merge \"$LOCAL\" \"$REMOTE\"
+[merge]
+  tool = p4merge
+[mergetool]
+  prompt = false
+  keepTemporaries = false
+  keepBackup = false
+[mergetool "p4merge"]
+  cmd = p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+  trustExitCode = true
+  keepbackup = false
+[push]
+	default = simple

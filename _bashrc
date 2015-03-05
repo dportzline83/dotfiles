@@ -1,0 +1,168 @@
+alias ls='ls --color'
+alias cw='compass watch -c ../../ExtendHealth.AdminSuite/config.rb'
+alias cc='compass compile -c ../../ExtendHealth.AdminSuite/config.rb'
+alias ss='start src/*.sln'
+alias role='whoami -groups -fo list | grep -i'
+alias ff='find . -type f -name'
+alias scala='scala -nobootcp'
+alias bake='bundle exec rake'
+
+set -o vi
+
+PHANTOMJS_BIN=/c/Users/daport/AppData/Roaming/npm/phantomjs.cmd
+export PHANTOMJS_BIN
+FIREFOX_BIN=/c/Program\ Files\ \(x86\)/Mozilla\ Firefox/firefox.exe
+export FIREFOX_BIN
+CHROME_BIN=/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
+export CHROME_BIN
+
+fu(){
+  find . -type f -name "$1" | xargs grep -nsiI "$2"
+}
+
+ful(){
+  find . -type f -name "$1" | xargs grep -siIl "$2"
+}
+
+#function vim(){
+#  if [[ $# -eq 0 ]]; then
+#    gvim &
+#  else
+#    gvim --remote-tab-silent "$@" &
+#  fi
+#}
+
+function showRemote(){
+  if [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1; then
+    remote=$1
+
+    if [ -z $remote ]
+    then
+      remote=origin
+    fi
+    url=$(git remote show $remote | grep "Fetch URL" | cut -c 14- | sed -r -e 's/\w+@/http:\/\//' -e '
+    s/\.git$//' -e 's/\.com:/.com\//' -e 's/^\s*//')
+
+    platform=$(uname)
+
+    if [[ $platform == Cygwin* || $platform == MINGW* ]]; then
+      opencmd=start
+    elif [[ $platform == Darwin* ]]; then
+      opencmd=open
+    fi
+
+    $opencmd $url
+  else
+    echo 'Not in a Git repository'
+  fi
+}
+
+[[ -s $USERPROFILE/.pik/.pikrc ]] && source $USERPROFILE/.pik/.pikrc
+
+SSH_ENV=$HOME/.ssh/environment
+   
+# start the ssh-agent
+function start_agent {
+    echo "Initializing new SSH agent..."
+    # spawn ssh-agent
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > ${SSH_ENV}
+    echo succeeded
+    chmod 600 ${SSH_ENV}
+    . ${SSH_ENV} > /dev/null
+    /usr/bin/ssh-add
+}
+   
+if [ -f "${SSH_ENV}" ]; then
+     . ${SSH_ENV} > /dev/null
+     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
+else
+    start_agent;
+fi
+
+function ehclone(){
+  if [ -z "$1" ]
+  then
+    echo "Missing git repository url ending"
+    echo "usage: ehclone 'extendhealth git repository ending' ['target directory name']"
+	return
+  fi
+
+  giturl="git@http://github.extendhealth.com:extend-health/$1.git"
+
+  if [ -z "$2" ]
+    then
+      # we DON'T HAVE a target directory
+      targetDir=$1
+    else
+      # we HAVE a target directory
+      targetDir=$2
+  fi
+  git clone --template=C:/home/eh-git $giturl $targetDir
+  cd $targetDir
+
+  bundle install
+}
+
+function rage(){
+
+echo "                                                                                                                 "
+echo "                                              ,;11tLG@@GL1..,@@. . ,C@@@@@@@i                                    "
+echo "                                         .C@@0f;.           0@@    8@@@@@@@G.                                    "
+echo "                                   .:if0@@@@@@@@@0L1:.     G@@@  t@@@@@i  .f@8;                                  "
+echo "                             ,8@GCL1;:,.    ..,,;;itLLLCGCG@@@@@@@@88:,,     .0@i                                "
+echo "                           1@@8                         . 1@.@@@0;;;;:;;.       0@i                              "
+echo "                        .L@@8,                        iLt8@: @@0                 ;@@:                            "
+echo "                       ;@88:                          1@@@@@88@.                   0@8.                          "
+echo "                       i8:                            @@.@@.@@@                     1@@L                         "
+echo "                   .,1@1                             ;@@@@C0@@@      ;G@@@Gfi,       .@@@;                       "
+echo "               ...,@@G.                            ..@@@@@@@@@0     0@@@@@:;8@@@,     C@@@G.                     "
+echo "        :ittfC@@@@@@@8;.                            @@@@@@@@@:    . t@@0i  .  C@@:    1@:L@@;.                   "
+echo "              .@@8LCG0@@@@@@8G1:.                  @@@@@@@@0     .8@1           i@i     CL:@@C                   "
+echo "             i@@0        :G@@@@@C8@i.             i@@@@@@8:    :80.        ,@,  . :@1,  f@1;@@;                  "
+echo "       . .  C@@1            .0@@@@@@t             8@@LL@@,   .8@.          .@,      t@@: f@tt@1                  "
+echo "       i. ;@@f                 f@;                .@G f@G   f@G            .@. .     .G@: .8@@8.                 "
+echo "       G:L@L                     f@;                @GG@; .1@G             ,@@@0C8@@@t L@,  t@8t                 "
+echo "      i@@8              .:L@@@@@@@@@@:             .@@@@;  @@.                   ,1;.   t@@: ;@@1                "
+echo "     .@@G           .t@8C.        18@@@:  .        8@@0   :@i                            L@@, 1@@t               "
+echo "     G@8         .G@8,               ;@8@i.        .      :8.                             0@t  L@@C              "
+echo " .  t@@f        ;@8                    @@00G  .           .0@t                            ;@G   L@@@,            "
+echo "fC. 0@@;        fC . .                 .@,..8 .             1@@.                           0G    f@C@;           "
+echo "f@C ;@@;       .0 .itf8@.               tL .8.                8@f                          Ct    ,@;i@t          "
+echo "f@C ,@8        iC     .@@.              .  C8.                 .@8.                       :8,     f@ ;@L         "
+echo "f@f G8         fC  . :@@f                 ,@:       .             G@@,.                 i@@,      1@L 1@t        "
+echo "f@,:@;         t@8@@@f     .             ,@0      .88@@@@@8@@@@@@1   L@@@@0i..       .C@@C         :@@ C@:       "
+echo "fG f0           ,8                      f@C    1@@0       .@@  .  f@@@@, .:L@8@@@@@@@@0,            :@f:@L       "
+echo "fC 0L           .8                    .@@.   i@  @80      .@@L     0. .8@@@.                         f@:8@.      "
+echo "fL.@t           :@:                 .8@t   .@8     @@.    .@@f@@@@@1      1@@@;..8@@@L .   .          8@0@:      "
+echo "fC,@1            @8               .8@L   .i@@f    . @@@i  .@@  .  ..         .C@8@L. ,8@t .           1@@@i      "
+echo "fL,@;             f@G .          8@i     1@8@0      .8i ,@@@C                     .:fL  0@,           .@@@1      "
+echo "fL,@;              .f@@888GffC88@:      .@t  88      @C .                                C@i           C@@1      "
+echo "fL.@;                .,,,,,,,,,,        18 .@@@@01  i@,                                   f@1  .       t@@1      "
+echo "fL 8:                                   @1   .8.;88@8. .                                   t@t         :@@i      "
+echo "fC C,                                  .8  ,8@1                               .             i@G        .@@;      "
+echo "fC t                                   i0 .,.                          1088C                 .0@:       8@:      "
+echo "fC ;                                   @,                           1@@t. ,0@0.                Gi       G@,      "
+echo "f8  G                                 ,8                          ,8@:       C@;    .          Ci       C@,      "
+echo ".@: ft                                C0                 ,8@;L@@08@1          :@0  .@G:,f@@1   Ci       f@,      "
+echo " :L ;@.                              .@:                8@.   . ..           t8@@@fi@C    1@@, Gi       f@,      "
+echo "  8. @L                              L8              . @@.                  08t   1@@i      :;,@;       i@:      "
+echo "  0f 1@:                            .@0               @@;                  1@;     @@.        8@,       :@;      "
+echo "  0@,.@C                            L@,              1@f        .G@@8;,;@8;@1      8@      .L@@0        .@@G     "
+echo "  f@G t@;                          .@8               8.         ;@@.    G@@i   ;C8@@08@@@@@8f;           0@G     "
+echo "   0@f 80                          8@i                 .        8@.        .G@C,                         L@L     "
+echo "    L@t;@f                        ;@8                 :C08@@@  8@t       L@L.                            1@t     "
+echo "     :@ff@:.                     .@@,              ,@@1    L@1 8@,    :80:                              f@@.     "
+echo "      .C8@@.                     0@L            . G@C        8@@8  ,C@;                                C@@t      "
+echo "        t@0                     i@G     .tLLf    1@C          ,8G@@i                                  C8@G       "
+echo "         080.                  :@C   ,0@G..,@8, .@@          i@8t                                    f@@8.       "
+echo "         ;@t@0,               .@t  .8@L      .0@@8       ;G@@1.                                     ;@@@.        "
+echo "         .@.:@@0.             ,L@8f,            1   :L@@01.                                        .8@8.         "
+echo "          Gt  i@C                  ,1L8@@@@@@@@ti0@@L                                              L@8.          "
+echo "          t8    ,0@L:                        .  .,;.                                              i@8.           "
+echo "          ,@C      ,C@@81                                                                         8@.            "
+echo "           1@L         :L@8;                                                                     C@:             "
+echo "            1L;            it                                                                   ;Li              "
+echo "                                                                                                                 "
+}
