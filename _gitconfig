@@ -1,8 +1,8 @@
 [user]
-	name = Darrel Portzline
+  name = Darrel Portzline
 	email = dportzline83@gmail.com
 [color]
-ui = auto 
+  ui = auto 
 [color "branch"]
   current = green 
   local = yellow
@@ -25,8 +25,6 @@ ui = auto
   unmerged = diff --name-status --diff-filter=U
   aa = add -A
   del = "!git clean -f; git reset HEAD --hard"
-[gui]
-	recentrepo = C:/Code/one-exchange
 [diff]
   tool = p4merge
   guitool = p4merge
