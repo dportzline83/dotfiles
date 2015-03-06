@@ -47,3 +47,5 @@ ui = auto
   keepbackup = false
 [push]
 	default = simple
+[core]
+	editor = vim
