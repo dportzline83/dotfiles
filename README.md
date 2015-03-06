@@ -14,3 +14,10 @@ From this directory
 
 ## Requirements
 * bash
+* git
+
+## Mac specific instructions
+* homebrew
+* Xcode command line tools
+* ```brew install vim```
+* ```brew install git```
