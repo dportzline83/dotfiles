@@ -47,11 +47,6 @@ done
 
 link_bin
 
-
-gem install bundler
-bundle install
-bundle update
-
 bundle_dir="$HOME/.vim/bundle"
 
 mkdir -p $bundle_dir
