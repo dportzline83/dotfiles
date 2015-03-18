@@ -47,3 +47,4 @@
 	default = simple
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore_global
