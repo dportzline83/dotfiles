@@ -15,6 +15,11 @@ From this directory
 ## Requirements
 * bash
 * git
+* vim with the following scripts:
+  * filetype
+  * ftoff
+  * ftplugin
+  * ftplugof
 
 ## Mac specific instructions
 * homebrew
