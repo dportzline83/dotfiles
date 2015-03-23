@@ -5,6 +5,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set number
+set ruler
 
 " set cursor style for iTerm2
 if &term =~ "xterm"
