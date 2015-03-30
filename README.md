@@ -26,3 +26,4 @@ From this directory
 * Xcode command line tools
 * ```brew install vim```
 * ```brew install git```
+* ```brew install bash-completion```
