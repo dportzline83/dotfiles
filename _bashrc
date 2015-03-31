@@ -74,7 +74,7 @@ function showRemote(){
 [[ -s $USERPROFILE/.pik/.pikrc ]] && source $USERPROFILE/.pik/.pikrc
 
 SSH_ENV=$HOME/.ssh/environment
-   
+
 # start the ssh-agent
 function start_agent {
     echo "Initializing new SSH agent..."
@@ -85,14 +85,16 @@ function start_agent {
     . ${SSH_ENV} > /dev/null
     /usr/bin/ssh-add
 }
-   
-if [ -f "${SSH_ENV}" ]; then
-     . ${SSH_ENV} > /dev/null
-     ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
+
+if [ -e "${SSH_ENV}" ]; then
+  if [ -f "${SSH_ENV}" ]; then
+    . ${SSH_ENV} > /dev/null
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+      start_agent;
     }
-else
+  else
     start_agent;
+  fi
 fi
 
 function rage(){
