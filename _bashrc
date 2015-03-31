@@ -9,6 +9,20 @@ alias bake='bundle exec rake'
 
 set -o vi
 
+PS1='\[\033]0;$MSYSTEM:${PWD//[^[:ascii:]]/?}\007\]' # set window title
+PS1="$PS1"'\n'                 # new line
+PS1="$PS1"'\[\033[32m\]'       # change color
+PS1="$PS1"'\u@\h '             # user@host<space>
+PS1="$PS1"'\[\033[33m\]'       # change color
+PS1="$PS1"'\w'                 # current working directory
+if test -z "$WINELOADERNOEXEC"
+then
+    PS1="$PS1"'$(__git_ps1)'   # bash function
+fi
+PS1="$PS1"'\[\033[0m\]'        # change color
+PS1="$PS1"'\n'                 # new line
+PS1="$PS1"'$ '                 # prompt: always $
+
 PHANTOMJS_BIN=/c/Users/daport/AppData/Roaming/npm/phantomjs.cmd
 export PHANTOMJS_BIN
 FIREFOX_BIN=/c/Program\ Files\ \(x86\)/Mozilla\ Firefox/firefox.exe
@@ -80,30 +94,6 @@ if [ -f "${SSH_ENV}" ]; then
 else
     start_agent;
 fi
-
-function ehclone(){
-  if [ -z "$1" ]
-  then
-    echo "Missing git repository url ending"
-    echo "usage: ehclone 'extendhealth git repository ending' ['target directory name']"
-	return
-  fi
-
-  giturl="git@http://github.extendhealth.com:extend-health/$1.git"
-
-  if [ -z "$2" ]
-    then
-      # we DON'T HAVE a target directory
-      targetDir=$1
-    else
-      # we HAVE a target directory
-      targetDir=$2
-  fi
-  git clone --template=C:/home/eh-git $giturl $targetDir
-  cd $targetDir
-
-  bundle install
-}
 
 function rage(){
 
