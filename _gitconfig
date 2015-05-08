@@ -25,6 +25,7 @@
   unmerged = diff --name-status --diff-filter=U
   aa = add -A
   del = "!git clean -f; git reset HEAD --hard"
+  pr = "!f() { git fetch origin refs/pull/$1/head:pr$1; } ; f"
 [diff]
   tool = p4merge
   guitool = p4merge
