@@ -14,12 +14,12 @@ PS1="$PS1"'\[\033[0m\]'        # change color
 PS1="$PS1"'\n'                 # new line
 PS1="$PS1"'$ '                 # prompt: always $
 
-PHANTOMJS_BIN=/c/Users/daport/AppData/Roaming/npm/phantomjs.cmd
-export PHANTOMJS_BIN
-FIREFOX_BIN=/c/Program\ Files\ \(x86\)/Mozilla\ Firefox/firefox.exe
-export FIREFOX_BIN
-CHROME_BIN=/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
-export CHROME_BIN
+#PHANTOMJS_BIN=/c/Users/daport/AppData/Roaming/npm/phantomjs.cmd
+#export PHANTOMJS_BIN
+#FIREFOX_BIN=/c/Program\ Files\ \(x86\)/Mozilla\ Firefox/firefox.exe
+#export FIREFOX_BIN
+#CHROME_BIN=/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
+#export CHROME_BIN
 
 fu(){
   find . -type f -name "$1" | xargs grep -nsiI "$2"

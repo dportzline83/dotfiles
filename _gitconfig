@@ -20,12 +20,13 @@
   co = checkout
   ci = commit
   st = status -sb
-  rbm='rebase master'
-  lga = log --pretty=format:'%an %Cred%d%Creset(%Cred%h%Creset) - %s %C(yellow)%ar' --graph -n 35
+  rbm = 'rebase master'
+  lga = log --pretty=format:'%an %Cred%d%Creset(%Cred%h%Creset) - %s %C(yellow)%ar' --graph -n 100
   unmerged = diff --name-status --diff-filter=U
   aa = add -A
   del = "!git clean -f; git reset HEAD --hard"
   pr = "!f() { git fetch origin refs/pull/$1/head:pr$1; } ; f"
+  f = fetch --all -p
 [diff]
   tool = p4merge
   guitool = p4merge
