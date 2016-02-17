@@ -57,6 +57,6 @@ function showRemote(){
 [[ -s $USERPROFILE/.pik/.pikrc ]] && source $USERPROFILE/.pik/.pikrc
 
 # source other startup files
-for file in ./.bash_startup/*; do
+for file in ~/.bash_startup/*; do
   . $file
 done
