@@ -54,6 +54,11 @@ function showRemote(){
   fi
 }
 
+# delete the local branches for which the remote tracking branches have been pruned
+function prune() {
+  git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d
+}
+
 [[ -s $USERPROFILE/.pik/.pikrc ]] && source $USERPROFILE/.pik/.pikrc
 
 # source other startup files
