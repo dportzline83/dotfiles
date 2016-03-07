@@ -20,7 +20,7 @@
   co = checkout
   ci = commit
   st = status -sb
-  rbm = 'rebase origin/master'
+  rb = !git fetch origin && git rebase origin/master
   lga = log --pretty=format:'%an %Cred%d%Creset(%Cred%h%Creset) - %s %C(yellow)%ar' --graph -n 100
   unmerged = diff --name-status --diff-filter=U
   aa = add -A
