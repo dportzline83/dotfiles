@@ -27,6 +27,7 @@
   del = "!git clean -f; git reset HEAD --hard"
   pr = "!f() { git fetch origin refs/pull/$1/head:pr$1; } ; f"
   f = fetch --all -p
+  amend = commit --amend -C HEAD
 [diff]
   tool = p4merge
   guitool = p4merge
