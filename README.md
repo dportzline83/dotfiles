@@ -10,7 +10,7 @@ Run the following:
 
     ./install.sh
 
-From this directory
+**Warning** This will delete any existing files with names as described above from your home directory
 
 ## Requirements
 * bash
