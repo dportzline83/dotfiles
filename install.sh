@@ -4,7 +4,8 @@ uname=`uname -s`
 function link_dotfile {
   source="${PWD}/$1"
   target="${HOME}/${1/_/.}"
-
+  
+  rm -rf $target
   symlink_file $source $target
 }
 
