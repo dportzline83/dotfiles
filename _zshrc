@@ -1,0 +1,8 @@
+set -o vi
+PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%2~%f%b %# '
+
+# delete the local branches for which the remote tracking branches have been pruned
+function prune() {
+  git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d
+}
+
