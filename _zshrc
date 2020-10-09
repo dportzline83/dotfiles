@@ -1,5 +1,24 @@
 set -o vi
-PROMPT='%(?.%F{green}√.%F{red}?%?)%f %B%F{240}%2~%f%b %# '
+
+# status of last process
+PROMPT='%(?.%F{green}√.%F{red}?%?)%f'
+# closest two directories of current path
+PROMPT+=' %B%F{240}%2~%f%b'
+# show # when running with privilege, otherwise %
+PROMPT+=' %# '
+
+# set up git integration
+autoload -Uz vcs_info
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
+# display branch name in right prompt
+zstyle ':vcs_info:git:*' formats '%F{green}(%b)%f'
+zstyle ':vcs_info:*' enable git
+RPROMPT=\$vcs_info_msg_0_
+
+alias login='kinit dportzline@COEXIST.LOCAL'
 
 # delete the local branches for which the remote tracking branches have been pruned
 function prune() {
