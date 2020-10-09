@@ -15,7 +15,6 @@ setopt prompt_subst
 
 # display branch name in right prompt
 zstyle ':vcs_info:git:*' formats '%F{green}(%b)%f'
-zstyle ':vcs_info:*' enable git
 RPROMPT=\$vcs_info_msg_0_
 
 alias login='kinit dportzline@COEXIST.LOCAL'
