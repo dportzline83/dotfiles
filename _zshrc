@@ -7,6 +7,10 @@ PROMPT+=' %B%F{240}%2~%f%b'
 # show # when running with privilege, otherwise %
 PROMPT+=' %# '
 
+# git completion
+
+autoload -Uz compinit && compinit
+
 # set up git integration
 autoload -Uz vcs_info
 precmd_vcs_info() { vcs_info }
