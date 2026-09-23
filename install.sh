@@ -48,6 +48,8 @@ done
 
 link_bin
 
+./vscode/install.sh "$@"
+
 bundle_dir="$HOME/.vim/bundle"
 
 mkdir -p $bundle_dir

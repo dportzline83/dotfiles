@@ -1,0 +1,8 @@
+# Copilot agent plugins that must be installed manually on a new machine.
+# VS Code has no CLI for this; run "Chat: Install Agent Plugin..." from the
+# Command Palette and paste the URL below.
+#
+# Everything under ~/.agents/skills and ~/.agents/hooks is installed and updated
+# by the Azure Copilot extension, so it is deliberately not tracked here.
+
+https://github.com/DriveTimeInc/dt.template.business-intelligence-automation.script.git
