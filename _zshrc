@@ -28,3 +28,14 @@ function prune() {
   git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d
 }
 
+if [ -d "$HOME/.dotnet" ]; then
+  export DOTNET_ROOT="$HOME/.dotnet"
+  export PATH="$DOTNET_ROOT:$DOTNET_ROOT/tools:$PATH"
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"

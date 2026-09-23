@@ -62,3 +62,5 @@ function prune() {
 for file in ~/.bash_startup/*; do
   . $file
 done
+
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"

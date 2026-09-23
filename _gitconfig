@@ -51,3 +51,4 @@
 [core]
   editor = vim
   excludesfile = ~/.gitignore_global
+	autocrlf = input
